@@ -11,15 +11,14 @@ class ffmpeg:
         self.arg2 = arg2
 
     def ffmpeg(self):
-        """ "
+        """
         arg1は変換したいファイル名
         arg2は変換したい拡張子名
         """
-
         name = self.arg1.split(".")[0]
         aname = f"{name}" + "." + str(self.arg2)
 
-        cmd = f"ffmpeg {self.arg1} {aname}"
+        cmd = f"ffmpeg -i {self.arg1} {aname}"
         subprocess.run(cmd, shell=True)
 
     def getfilename(self):
