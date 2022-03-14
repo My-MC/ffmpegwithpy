@@ -1,0 +1,12 @@
+# venv
+.venv
+venv
+
+# build
+dist
+
+# cache
+__pycache__
+
+# pytest
+.pytest_cache
