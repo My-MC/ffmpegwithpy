@@ -1,10 +1,8 @@
-"""ffmpegのコマンド"""
-
-import subprocess
+"""コマンドやファイル名を返す関数の詰め合わせ"""
 
 
-class ffmpeg:
-    """ffmpegを実行しファイルを処理するクラス
+class get:
+    """ffmpegに関する情報を取得するクラス
 
     Args:
         arg1(str): 変換元のファイル名
@@ -19,8 +17,13 @@ class ffmpeg:
         self.qv = qv
         self.ab = ab
 
-    def ffmpeg(self):
-        """ffmpegで変換するためにcmdを書いてそれを実行させる"""
+    def getfilename(self):
+        """変換後のファイル名を返す関数"""
+        name = self.arg1.split(".")[0]
+        aname = f"{name}" + "." + str(self.arg2)
+        return aname
+
+    def getcommand(self):
 
         name = self.arg1.split(".")[0]
         aname = f"{name}" + "." + str(self.arg2)
@@ -36,4 +39,4 @@ class ffmpeg:
             ab = f"-ab {self.ab}"
         cmd = f"ffmpeg -i {self.arg1} {qv} {ab} {aname}"
 
-        subprocess.run(cmd, shell=True)
+        return cmd
