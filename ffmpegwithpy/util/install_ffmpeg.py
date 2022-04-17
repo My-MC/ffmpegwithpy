@@ -1,7 +1,8 @@
-import urllib.request
-import shutil
 import os
+import shutil
+import urllib.request
 from distutils.dir_util import copy_tree
+
 
 def main():
     url = "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n5.0-latest-win64-lgpl-5.0.zip"
@@ -12,6 +13,7 @@ def main():
     copy_tree("./cache/ffmpeg-n5.0-latest-win64-lgpl-5.0/bin", "./")
     shutil.rmtree("./cache")
     os.remove(save_name)
+
 
 if __name__ == "__main__":
     main()
