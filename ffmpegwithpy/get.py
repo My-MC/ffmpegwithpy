@@ -37,6 +37,6 @@ class get:
             ab = ""
         else:
             ab = f"-ab {self.ab}"
-        cmd = f"ffmpeg -i {self.arg1} {qv} {ab} {aname}"
+        cmd = f"ffmpeg -y -i {self.arg1} {qv} {ab} {aname}"
 
         return cmd

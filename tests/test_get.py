@@ -11,26 +11,26 @@ def test_ffmpeg_02():
 
 def test_getcommand_01():
     assert (
-        ffmpegwithpy.get("getcommand01.mp4", "mp3").getcommand() == "ffmpeg -i getcommand01.mp4   getcommand01.mp3"
+        ffmpegwithpy.get("getcommand01.mp4", "mp3").getcommand() == "ffmpeg -y -i getcommand01.mp4   getcommand01.mp3"
     )
 
 
 def test_getcommand_02():
     assert (
         ffmpegwithpy.get("getcommand02.mp4", "mp3", 1).getcommand()
-        == "ffmpeg -i getcommand02.mp4 -q:v 1  getcommand02.mp3"
+        == "ffmpeg -y -i getcommand02.mp4 -q:v 1  getcommand02.mp3"
     )
 
 
 def test_getcommand_03():
     assert (
         ffmpegwithpy.get("getcommand03.mp4", "mp3", qv=12).getcommand()
-        == "ffmpeg -i getcommand03.mp4 -q:v 12  getcommand03.mp3"
+        == "ffmpeg -y -i getcommand03.mp4 -q:v 12  getcommand03.mp3"
     )
 
 
 def test_getcommand_04():
     assert (
         ffmpegwithpy.get("getcommand03.mp4", "mp3", 12, 192).getcommand()
-        == "ffmpeg -i getcommand03.mp4 -q:v 12 -ab 192 getcommand03.mp3"
+        == "ffmpeg -y -i getcommand03.mp4 -q:v 12 -ab 192 getcommand03.mp3"
     )
