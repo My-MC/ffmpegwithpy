@@ -1,39 +1,54 @@
-"""ffmpegのコマンド"""
+"""Run FFmpeg
+
+This module runs FFmpeg based on the input and performs file conversion and encoding.
+
+Todo:
+    * Cover all arguments
+"""
 
 import subprocess
+from typing import Optional
+
+from pydantic import BaseModel
 
 
 class ffmpeg:
-    """ffmpegを実行しファイルを処理するクラス
+    """Class that executes FFmpeg and processes files
 
     Args:
-        arg1(str): 変換元のファイル名
-        arg2(str): 変換したい拡張子
-        qv(int, optional): 変換したいビデオのクオリティー(ビデオのときのみ有効)
-        ab(int, optional): 変換するもののオーディオのビットレート
+        arg1(str): File name of the source file to be converted
+        arg2(str): Extension to be converted
+        opt(optional): Option
     """
 
-    def __init__(self, arg1, arg2, qv=None, ab=None):
+    class Options(BaseModel):
+        qv: Optional[int]
+        ab: Optional[int]
+
+    def __init__(self, arg1: str, arg2: str, opt: Optional[Options] = None):
         self.arg1 = arg1
         self.arg2 = arg2
-        self.qv = qv
-        self.ab = ab
+        self.opt = opt
 
-    def ffmpeg(self):
-        """ffmpegで変換するためにcmdを書いてそれを実行させる"""
+    def ffmpeg(self) -> None:
+        """Function to write cmd to convert with FFmpeg and have it run"""
 
         name = self.arg1.split(".")[0]
-        aname = f"{name}" + "." + str(self.arg2)
+        aname = f"{name}.{self.arg2}"
 
-        if self.qv == None:
-            qv = ""
-        else:
-            qv = f"-q:v {self.qv}"
+        if self.opt:
+            if self.opt.qv is None:
+                qv = ""
+            else:
+                qv = f"-q:v {self.opt.qv}"
 
-        if self.ab == None:
-            ab = ""
+            if self.opt.ab is None:
+                ab = ""
+            else:
+                ab = f"-ab {self.opt.ab}"
+            cmd = f"ffmpeg -y -i {self.arg1} {qv} {ab} {aname}"
+
         else:
-            ab = f"-ab {self.ab}"
-        cmd = f"ffmpeg -y -i {self.arg1} {qv} {ab} {aname}"
+            cmd = f"ffmpeg -y -i {self.arg1} {aname}"
 
         subprocess.run(cmd, shell=True)

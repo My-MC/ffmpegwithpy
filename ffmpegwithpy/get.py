@@ -1,42 +1,58 @@
-"""コマンドやファイル名を返す関数の詰め合わせ"""
+"""Return command or filename
+
+This module returns the command and filename when FFmpeg is run.
+
+Todo:
+    * Add a function that retrieves data from FFprobe and returns it.
+"""
+
+from typing import Optional
+
+from pydantic import BaseModel
 
 
 class get:
-    """ffmpegに関する情報を取得するクラス
+    """Class for obtaining information about ffmpeg
 
     Args:
-        arg1(str): 変換元のファイル名
-        arg2(str): 変換したい拡張子
-        qv(int, optional): 変換したいビデオのクオリティー(ビデオのときのみ有効)
-        ab(int, optional): 変換するもののオーディオのビットレート
+        arg1(str): File name of the source file to be converted
+        arg2(str): Extension to be converted
+        opt(optional): Option
     """
 
-    def __init__(self, arg1, arg2, qv=None, ab=None):
+    class Options(BaseModel):
+        qv: Optional[int]
+        ab: Optional[int]
+
+    def __init__(self, arg1: str, arg2: str, opt: Optional[Options] = None):
         self.arg1 = arg1
         self.arg2 = arg2
-        self.qv = qv
-        self.ab = ab
+        self.opt = opt
 
-    def getfilename(self):
-        """変換後のファイル名を返す関数"""
+    def getfilename(self) -> str:
+        """Function to return the name of the converted file"""
         name = self.arg1.split(".")[0]
-        aname = f"{name}" + "." + str(self.arg2)
+        aname = f"{name}.{self.arg2}"
         return aname
 
-    def getcommand(self):
+    def getcommand(self) -> str:
 
         name = self.arg1.split(".")[0]
-        aname = f"{name}" + "." + str(self.arg2)
+        aname = f"{name}.{self.arg2}"
 
-        if self.qv == None:
-            qv = ""
-        else:
-            qv = f"-q:v {self.qv}"
+        if self.opt:
+            if self.opt.qv is None:
+                qv = ""
+            else:
+                qv = f"-q:v {self.opt.qv}"
 
-        if self.ab == None:
-            ab = ""
+            if self.opt.ab is None:
+                ab = ""
+            else:
+                ab = f"-ab {self.opt.ab}"
+
+            cmd = f"ffmpeg -y -i {self.arg1} {qv} {ab} {aname}"
         else:
-            ab = f"-ab {self.ab}"
-        cmd = f"ffmpeg -y -i {self.arg1} {qv} {ab} {aname}"
+            cmd = f"ffmpeg -y -i {self.arg1} {aname}"
 
         return cmd
