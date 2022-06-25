@@ -1,8 +1,10 @@
 [tool.poetry]
 name = "ffmpegwithpy"
-version = "0.1.1"
+version = "0.1.2"
 description = "Python FFmpeg wrapper."
 authors = ["My <84212641+My-MC@users.noreply.github.com>"]
+license = "MIT"
+homepage = "https://github.com/My-MC/ffmpegwithpy"
 
 [tool.poetry.dependencies]
 python = "^3.7"
