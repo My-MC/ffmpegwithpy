@@ -8,7 +8,7 @@ homepage = "https://github.com/My-MC/ffmpegwithpy"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-pydantic = "1.9.1"
+pydantic = "1.10.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "7.0.1"
