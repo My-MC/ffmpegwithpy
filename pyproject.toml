@@ -8,16 +8,15 @@ homepage = "https://github.com/My-MC/ffmpegwithpy"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-pydantic = "^1.9.1"
+pydantic = "1.9.1"
 
-[tool.poetry.dev-dependencies]
-pytest = "^7.0.1"
-black = "^22.3.0"
-isort = "^5.10.1"
-taskipy = "^1.10.2"
-mypy = "^0.961"
-flake8 = "^4.0.1"
-Flake8-pyproject = "^0.9.0"
+[tool.poetry.group.dev.dependencies]
+pytest = "7.0.1"
+black = "22.3.0"
+isort = "5.10.1"
+taskipy = "1.10.2"
+mypy = "0.961"
+ruff = "0.0.126"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -30,21 +29,25 @@ exclude = '''
     migrations
     | .mypy_cache
     | .pytest_cache
-    | .tox
+    | .ruff_cache
     | .venv
     | dist
-    | build
 )
 '''
 
-[tool.isort]
-profile = "black"
-line_length = 119
+[tool.ruff]
+line-length = 119
 
-[tool.flake8]
-max-line-length = 119
-extend-ignore = "E203"
-max-complexity = 10
+select = ["F", "E", "W", "I"]
+
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".pytest_cache",
+    ".venv",
+    "dist",
+]
 
 [tool.mypy]
 show_error_context = true
@@ -60,6 +63,7 @@ warn_redundant_casts = true
 fmt-black = "black feature ffmpegwithpy tests"
 fmt-isort = "isort ffmpegwithpy tests"
 fmt = "task fmt-black && task fmt-isort"
+
 lint-mypy = "mypy ffmpegwithpy"
-lint-flake8 = "flake8p ffmpegwithpy tests"
-lint = "task lint-mypy && task lint-flake8"
+lint-ruff = "ruff ffmpegwithpy"
+lint = "task lint-mypy && task lint-ruff"

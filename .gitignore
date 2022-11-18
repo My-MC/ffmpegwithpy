@@ -5,8 +5,8 @@ venv
 # build
 dist
 
-# cache
+# caches
 __pycache__
-
-# pytest
 .pytest_cache
+.mypy_cache
+.ruff_cache
