@@ -24,4 +24,4 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: "poetry"
       - run: poetry install
-      - run: poetry run task pytest
+      - run: poetry run task test
