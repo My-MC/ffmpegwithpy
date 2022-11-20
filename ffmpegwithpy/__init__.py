@@ -8,9 +8,8 @@ Todo:
     * Cover FFplay
 """
 
-from .ffmpeg import ffmpeg
-from .get import get
+from .FFmpeg import FFmpeg, get_filename, parse_options
 
-__version__ = "0.1.1"
+__version__ = "0.1.0"
 
-__all__ = ["ffmpeg", "get"]
+__all__ = ["FFmpeg", "get_filename", "parse_options"]
