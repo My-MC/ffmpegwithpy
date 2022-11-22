@@ -67,4 +67,4 @@ lint-mypy = "mypy ffmpegwithpy"
 lint-ruff = "ruff ffmpegwithpy"
 lint = "task lint-mypy && task lint-ruff"
 
-test = "pytest --cov=ffmpegwithpy tests/"
+test = "pytest --cov=ffmpegwithpy --cov-branch tests/"
