@@ -11,10 +11,10 @@ python = "^3.7"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "7.2.0"
-black = "22.3.0"
-taskipy = "1.10.2"
-mypy = "0.961"
-ruff = "0.0.129"
+black = "22.10.0"
+taskipy = "1.10.3"
+mypy = "0.991"
+ruff = "0.0.134"
 pytest-cov = "4.0.0"
 
 [build-system]
