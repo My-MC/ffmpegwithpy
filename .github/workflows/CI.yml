@@ -39,8 +39,9 @@ jobs:
           cache: "poetry"
       - run: poetry install
       - name: Run pytest-cov
-        run: poetry run pytest tests/ --cov=ffmpegwithpy --cov-report=xml:coverage.xml --cov-branch
+        run: poetry run pytest tests/ --cov=ffmpegwithpy --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov-branch | tee pytest-coverage.txt
       - name: Pytest Coverage Comment
         uses: MishaKav/pytest-coverage-comment@v1.1.37
         with:
-          pytest-xml-coverage-path: ./coverage.xml
+          pytest-coverage-path: ./pytest-coverage.txt
+          junitxml-path: ./pytest.xml
