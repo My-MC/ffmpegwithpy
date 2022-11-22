@@ -59,9 +59,7 @@ warn_unused_ignores = true
 warn_redundant_casts = true
 
 [tool.taskipy.tasks]
-fmt-black = "black feature ffmpegwithpy tests"
-fmt-isort = "isort ffmpegwithpy tests"
-fmt = "task fmt-black && task fmt-isort"
+fmt = "black ffmpegwithpy tests"
 
 lint-mypy = "mypy ffmpegwithpy"
 lint-ruff = "ruff ffmpegwithpy"
