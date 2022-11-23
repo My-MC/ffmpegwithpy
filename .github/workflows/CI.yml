@@ -10,11 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.7", "3.8", "3.9", "3.10"]
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -24,7 +20,7 @@ jobs:
 
       - uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.7"
           cache: "poetry"
 
       - run: poetry install
