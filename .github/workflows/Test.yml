@@ -3,6 +3,9 @@ name: Test
 on:
   pull_request:
 
+permissions:
+  pull-requests: write
+
 jobs:
   pytest:
     runs-on: ${{ matrix.os }}
