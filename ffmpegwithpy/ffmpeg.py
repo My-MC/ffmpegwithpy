@@ -74,4 +74,4 @@ class FFmpeg:
         else:
             cmd = _ffmpeg_cmd(self.filepath, self.file_format, None)
 
-        subprocess.run(cmd, shell=True)
+        subprocess.run(cmd, shell=True, check=True)
