@@ -46,7 +46,7 @@ jobs:
       - name: Run pytest-cov
         run: poetry run pytest tests/ --cov=ffmpegwithpy --junitxml=pytest.xml --cov-report=term-missing --cov-branch | tee pytest-coverage.txt
       - name: Pytest Coverage Comment
-        uses: MishaKav/pytest-coverage-comment@v1.1.46
+        uses: MishaKav/pytest-coverage-comment@v1.1.47
         with:
           pytest-coverage-path: ./pytest-coverage.txt
           junitxml-path: ./pytest.xml
