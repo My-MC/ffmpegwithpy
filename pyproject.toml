@@ -37,7 +37,15 @@ exclude = '''
 [tool.ruff]
 line-length = 119
 
-select = ["F", "E", "W", "I", "B", "N"]
+select = [
+    "F",  # pyflakes
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "I",  # isort
+    "N",  # pep8-naming
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+]
 
 exclude = [
     ".git",
